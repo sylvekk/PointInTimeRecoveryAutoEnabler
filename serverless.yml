@@ -8,9 +8,16 @@ provider:
   region: ${self:custom.region}
   environment:
     REGION: ${self:custom.region}
-
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:ListTables
+        - dynamodb:DescribeTable
+        - dynamodb:UpdateContinuousBackups
+        - dynamodb:DescribeContinuousbackups
+      Resource: "arn:aws:dynamodb:${self:custom.region}:*:table/*"
 functions:
   cron:
     handler: handler.run
     events:
-      - schedule: rate(10 minute)
+      - schedule: rate(1 minute)
