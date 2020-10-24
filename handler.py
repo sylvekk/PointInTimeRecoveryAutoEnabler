@@ -24,7 +24,7 @@ def maybe_update_continuous_backups(table_name):
     table_backup_settings = client.describe_continuous_backups(
         TableName=table_name
     )
-    backup_state = table_backup_settings['ContinuousBackupsDescription']['ContinuousBackupsStatus']
+    backup_state = table_backup_settings['ContinuousBackupsDescription']['PointInTimeRecoveryDescription']['PointInTimeRecoveryStatus']
     logger.info("Table's " + table_name + " backup is set to " + backup_state)
 
     try:
@@ -38,6 +38,6 @@ def maybe_update_continuous_backups(table_name):
             )
     except ClientError as e:
         if e.response['Error']['Code'] == "ConditionalCheckFailedException":
-            print(e.response['Error']['Message'])
+            logger.error(e.response['Error']['Message'])
         else:
             raise
