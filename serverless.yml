@@ -1,0 +1,16 @@
+service: ensure-aws-db-backups-cron
+custom:
+  region: "${opt:region, 'eu-west-2'}"
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ${self:custom.region}
+  environment:
+    REGION: ${self:custom.region}
+
+functions:
+  cron:
+    handler: handler.run
+    events:
+      - schedule: rate(10 minute)
