@@ -5,8 +5,6 @@ from os import environ
 
 client = boto3.client('dynamodb', environ['REGION'])
 dynamodb = boto3.resource('dynamodb')
-
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -41,3 +39,11 @@ def maybe_update_continuous_backups(table_name):
             logger.error(e.response['Error']['Message'])
         else:
             raise
+
+
+def filter_table_names(table_names):
+    filter_expression = 'TableNamePrefix'
+    for table_name in table_names:
+        if filter_expression not in table_name:
+            table_names.remove(table_name)
+    return table_names

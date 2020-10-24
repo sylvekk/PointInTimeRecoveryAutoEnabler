@@ -20,4 +20,4 @@ functions:
   cron:
     handler: handler.run
     events:
-      - schedule: rate(1 minute)
+      - schedule: rate(2 hours)
