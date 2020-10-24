@@ -1,5 +1,5 @@
 <!--
-title: 'Python CRON JOB Lambda for AWS Serverless REST API with DynamoDB'
+title: 'PointInTimeRecoveryAutoEnabler'
 description: 'This lambda ensures point in time recovery is enabled on all DynamoDB tales'
 layout: Doc
 framework: v1
@@ -9,9 +9,18 @@ authorLink: 'https://github.com/sylvekk'
 authorName: 'Sylwester Karwacki'
 authorAvatar: 'https://en.gravatar.com/userimage/151138712/3517d1908c28e1b26b2d3cb723921630.jpeg'
 -->
-## Python CRON JOB Lambda for AWS Serverless REST API
+## PointInTimeRecoveryAutoEnabler
 
-This lambda ensures point in time recovery is enabled on all DynamoDB tales
+##### What is the purpose and why it was developed?
+Those who use DynamoDB know how important the ```PointInTimeRecovery``` 
+is and how easily it can be turned on or off though the console. The consequences of accidentally turning it off, 
+or forgetting to turning it on, may be drastic. 
+
+Moreover, there are some examples where we create the Table programmatically and are unable to set the ```PointInTimeRecovery``` at the same time.
+It may be caused by a delay in response from the client, or longer time taken to create the Table. 
+Additionally it may simply fail on enabling ```PointInTimeRecovery``` and we may be unaware of it for some time.
+
+This lambda addresses above issues and ensures ```PointInTimeRecovery``` is enabled on all/selected DynamoDB Tables
 
 ## Build with Serverless - serverless.yml
 #### What is Serverless
