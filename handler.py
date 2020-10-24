@@ -21,13 +21,14 @@ def run(event, context):
 def maybe_update_continuous_backups(table_name):
     logger.info("Checking settings for table  " + table_name)
 
-    backup_state = client.describe_continuous_backups(
+    table_backup_settings = client.describe_continuous_backups(
         TableName=table_name
     )
+    backup_state = table_backup_settings['ContinuousBackupsDescription']['ContinuousBackupsStatus']
     logger.info("Table's " + table_name + " backup is set to " + backup_state)
 
     try:
-        if backup_state['ContinuousBackupsDescription']['ContinuousBackupsStatus'] != 'ENABLED':
+        if backup_state != 'ENABLED':
             logger.info("Enabling backups for table " + table_name)
             client.update_continuous_backups(
                 TableName=table_name,
