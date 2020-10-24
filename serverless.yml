@@ -1,4 +1,4 @@
-service: ensure-aws-db-backups-cron
+service: ensure-aws-point-in-time-recovery-auto-enabler
 custom:
   region: "${opt:region, 'eu-west-2'}"
 

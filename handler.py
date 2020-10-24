@@ -42,8 +42,9 @@ def maybe_update_continuous_backups(table_name):
 
 
 def filter_table_names(table_names):
-    filter_expression = 'TableNamePrefix'
+    filter_expression = 'TableNamePrefix-'
+    filtered_names = []
     for table_name in table_names:
-        if filter_expression not in table_name:
-            table_names.remove(table_name)
-    return table_names
+        if filter_expression in table_name:
+            filtered_names.append(table_name)
+    return filtered_names
