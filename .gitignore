@@ -1,6 +1,7 @@
 *.egg-info/
 *.egg
-.idea/
+.idea
+.idea/*
 .installed.cfg
 .Python
 env/
