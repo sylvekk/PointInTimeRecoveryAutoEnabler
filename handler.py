@@ -10,8 +10,10 @@ logger.setLevel(logging.INFO)
 
 def run(event, context):
     if 'client' not in event:
+        logger.info('Client provided in event')
         client = boto3.client('dynamodb', environ['REGION'])
     else:
+        logger.info('Getting new client')
         client = event['client']
     logger.info('Starting the routine...')
     tables = client.list_tables()
