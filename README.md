@@ -49,7 +49,8 @@ pip3 install -r requirements.txt
 Once AWS CLI and SERVERLESS is installed, clone this repo
 
 #### Deployment
-This repo does not consider any CI deployment, and only focuses on the standard serverless deploy
+##### Severless deployment directly to the cloud
+This repo does not need any CI deployment, and can be deployed using the standard serverless deploy
 
 Run the standard command to deploy to AWS directly 
 
@@ -64,6 +65,10 @@ serverless deploy --stage development
 ```
 where 'development' is the environment you want to deploy to
 
+#####Continuous Integration Deployment with SEMAPHORE
+The repo contains '''.semaphore''' folder and '''.semaphore.yml''' which consist of a basic 
+setup to run the tests on SemaphoreCI, you will need to customise the workflow and link your project
+to your Semaphore account to have it working. [See here for more on semaphore](https://docs.semaphoreci.com/guided-tour/creating-your-first-project/)
 #### Testing
 Testing using pytest
 install requirements
