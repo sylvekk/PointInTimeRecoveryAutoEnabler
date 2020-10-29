@@ -86,7 +86,7 @@ sudo python setup.py install
 ```
 
 We are using ```mock_dynamodb2_deprecated``` instead of ```mock_dynamodb2```
- as at the point of writing there is an issue with botocore, and when using ```mock_dynamodb2```
+ as at the point of writing there is an issue with ```botocore```, and when using ```mock_dynamodb2```
   it creates a real table on AWS
 ##### What can be customised?
 
