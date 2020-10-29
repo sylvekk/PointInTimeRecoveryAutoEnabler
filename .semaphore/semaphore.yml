@@ -12,8 +12,7 @@ blocks:
           commands:
             - sem-version python 3.8
             - checkout
-            - python -m pip3 install --upgrade pip3
-            - pip3 install -r requirements-test.txt
-            - pip3 install flake8
-            - pip3 install pytest
+            - python -m pip install --upgrade pip
+            - pip install -r requirements-test.txt
+            - pip install pytest
             - pytest
