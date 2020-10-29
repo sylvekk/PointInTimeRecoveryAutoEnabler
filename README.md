@@ -37,6 +37,14 @@ or as a bear minimum run this command to install serverless
 ```bash
 npm install -g serverless
 ```
+to install testing dependencies run
+```
+sls plugin install -n serverless-python-requirements
+```
+``` 
+pip3 install -r requirements.txt
+ 
+```
 
 Once AWS CLI and SERVERLESS is installed, clone this repo
 
@@ -56,8 +64,30 @@ serverless deploy --stage development
 ```
 where 'development' is the environment you want to deploy to
 
+#### Testing
+Testing using pytest
+install requirements
+``` 
+pip3 install -r requirements-test.txt
 
+```
 
+Make sure your ```moto``` is at version ```1.3.16``` or higher as otherwise 
+```describe_continuous_backups``` will not work within tests.
+If you run older version you need to uninstall it and install correct version
+``` 
+sudo pip3 uninstall moto
+```
+and then install it with teh latest version (1.3.6 a the time of writing)
+``` 
+git clone git://github.com/spulec/moto.git
+cd moto
+sudo python setup.py install
+```
+
+We are using ```mock_dynamodb2_deprecated``` instead of ```mock_dynamodb2```
+ as at the point of writing there is an issue with botocore, and when using ```mock_dynamodb2```
+  it creates a real table on AWS
 ##### What can be customised?
 
 1. The frequency on which the lambda runs is specified in the ```serverless.yml```

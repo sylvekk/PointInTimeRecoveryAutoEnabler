@@ -21,3 +21,5 @@ functions:
     handler: handler.run
     events:
       - schedule: rate(2 hours)
+plugins:
+  - serverless-python-requirements
