@@ -1,4 +1,4 @@
-service: ensure-aws-point-in-time-recovery-auto-enabler
+service: point-in-time-recovery-enabler
 custom:
   region: "${opt:region, 'eu-west-2'}"
 
@@ -20,6 +20,6 @@ functions:
   cron:
     handler: handler.run
     events:
-      - schedule: rate(2 hours)
+      - schedule: rate(12 hours)
 plugins:
   - serverless-python-requirements
