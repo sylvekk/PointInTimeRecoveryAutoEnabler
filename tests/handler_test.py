@@ -8,7 +8,7 @@ from helpers.db_helper import get_table_point_in_time_recovery_status
 @mock_dynamodb2
 def test_handler__enables_point_in_time_recovery():
     client = boto3.client('dynamodb', environ['REGION'])
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', environ['REGION'])
     create_table('table_1', dynamodb)
     create_table('table_2', dynamodb)
     create_table('table_3', dynamodb)

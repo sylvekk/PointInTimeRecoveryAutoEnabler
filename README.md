@@ -78,7 +78,7 @@ If you run older version you need to uninstall it and install correct version
 ``` 
 sudo pip3 uninstall moto
 ```
-and then install it with teh latest version (1.3.6 a the time of writing)
+and then install it with the latest version (1.3.6 a the time of writing)
 ``` 
 git clone git://github.com/spulec/moto.git
 cd moto
