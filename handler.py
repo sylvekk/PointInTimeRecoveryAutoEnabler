@@ -6,25 +6,20 @@ from helpers.db_helper import get_table_point_in_time_recovery_status
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+client = boto3.client('dynamodb', environ['REGION'])
 
 
 def run(event, context):
-    if 'client' not in event:
-        logger.info('Client provided in event')
-        client = boto3.client('dynamodb', environ['REGION'])
-    else:
-        logger.info('Getting new client')
-        client = event['client']
     logger.info('Starting the routine...')
     tables = client.list_tables()
     for table_name in tables['TableNames']:
-        maybe_update_continuous_backups(table_name, client)
+        maybe_update_continuous_backups(table_name)
 
 
-def maybe_update_continuous_backups(table_name, client):
+def maybe_update_continuous_backups(table_name,):
     logger.info("Checking settings for table  " + table_name)
     try:
-        if get_table_point_in_time_recovery_status(table_name, client) != 'ENABLED':
+        if get_table_point_in_time_recovery_status(table_name) != 'ENABLED':
             logger.info("Setting backups for table " + table_name)
             client.update_continuous_backups(
                 TableName=table_name,
